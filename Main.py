@@ -17,8 +17,7 @@ DicEmpresa = {}
 "FUNÇÔES ÔNIBUS"
 
 def CriandoOnibus():
-    Condicao = True
-    while Condicao == True:
+    while True:
         NovoOnibus = Onibus()
         Linha = NovoOnibus.Linha
         if Linha in DicOnibus:
@@ -28,7 +27,7 @@ def CriandoOnibus():
             DicEmpresa[Linha] = [[], "", "N", 0]
             print(f"Ônibus de linha {Linha} criado com sucesso!\n\n")
             print("Voltando ao menu......\n\n")
-            Condicao = False
+            break
 
 def AssignandoAdicionando():
     while True:
@@ -43,19 +42,23 @@ def AssignandoAdicionando():
 
         else:
             while True:
-                NumeroMenuTres = int(input("O que deseja fazer?\n"
-                                           "1- Assignar motorista ao ônibus\n"
-                                           "2- Assignar fiscal ao ônibus\n"
-                                           "3- Adicionar ponto de parada ao ônibus\n"
-                                           "4- Voltar\n"))
+                while True:
+                    try:
+                        NumeroMenuTres = int(input("O que deseja fazer?\n"
+                                                   "1- Assignar motorista ao ônibus\n"
+                                                   "2- Assignar fiscal ao ônibus\n"
+                                                   "3- Adicionar ponto de parada ao ônibus\n"
+                                                   "4- Voltar\n"))
+                        break
+                    except:
+                        print("Entrada invalida! Tente novamente ")
 
                 if NumeroMenuTres == 1:  # motorista
-                    Condicao = True
-                    while Condicao == True:
+                    while True:
                         NomeMotorista = input("Qual o nome do motorista? (Para sair digite S)\n ")
                         if NomeMotorista == 'S':
                             print("Voltando......\n\n")
-                            Condicao = False
+                            break
 
                         elif NomeMotorista not in DicMotoristas:
                             print("Motorista não encontrado! Selecione um motorista existente"
@@ -72,17 +75,16 @@ def AssignandoAdicionando():
                                 DicMotoristas[AntigoMotorista][1] = "N"
                             DicMotoristas[NomeMotorista][1] = Linha
                             DicEmpresa[Linha][1] = NomeMotorista
-                            Condicao = False
                             print(f"Motorista {NomeMotorista} assignado ao ônibus de linha {Linha}\n\n")
                             print("Voltando......\n\n")
+                            break
 
                 elif NumeroMenuTres == 2:  # fiscal
-                    Condicao = True
-                    while Condicao == True:
+                    while True:
                         NomeFiscal = input("Qual o nome fiscal? (Para sair digite S)\n ")
                         if NomeFiscal == 'S':
                             print("Voltando......\n\n")
-                            Condicao = False
+                            break
 
                         elif NomeFiscal not in DicFiscais:
                             print("Fiscal não encontrado! Selecione um fiscal existente"
@@ -100,26 +102,24 @@ def AssignandoAdicionando():
                                 DicFiscais[AntigoFiscal][1] = "N"
 
                             DicFiscais[NomeFiscal][1] = Linha
-                            Condicao = False
                             DicEmpresa[Linha][2] = NomeFiscal
                             print(f"Fiscal {NomeFiscal} assignado ao ônibus de linha {Linha}\n\n")
                             print("Voltando......\n\n")
+                            break
 
                 elif NumeroMenuTres == 3:  # parada
-                    Condicao = True
-                    while Condicao == True:
+                    while True:
                         NomeParada = input("Qual o nome da nova parada? (Para sair digite S)\n ")
 
                         if NomeParada == 'S':
-                            Condicao = False
                             print("Voltando......\n\n")
+                            break
                         elif NomeParada not in DicParadas:
                             print("Parada não encontrada! Selecione uma parada existente"
                                   " ou crie uma nova:\n")
                         elif NomeParada in DicEmpresa[Linha][0]:
                             print("Parada já se encontra dentro da rota desse ônibus. \n")
                         else:
-                            Condicao = False
                             Lista = DicEmpresa[Linha][0]
                             Lista += [NomeParada]
                             DicEmpresa[Linha][0] = Lista
@@ -130,6 +130,7 @@ def AssignandoAdicionando():
                             DicParadas[NomeParada][1] = LinhasdaParada
                             print(f'Parada {NomeParada} adicionada a rota do ônibus de linha {Linha}\n\n')
                             print("Voltando......\n\n")
+                            break
 
                 elif NumeroMenuTres == 4:
                     break
@@ -151,21 +152,30 @@ def AlterarDadosOnibus():
         else:
             while True:
                 OnibusM = DicOnibus[Linha]
-                NumeroMenuQuatroUm = int(input("Qual você deseja?\n"
-                                               "1- Alterar dados do ônibus\n"
-                                               "2- Alterar rota do ônibus\n"
-                                               "3- Voltar \n"))
+                while True:
+                    try:
+                        NumeroMenuQuatroUm = int(input("Qual você deseja?\n"
+                                                       "1- Alterar dados do ônibus\n"
+                                                       "2- Alterar rota do ônibus\n"
+                                                       "3- Voltar \n"))
+                        break
+                    except:
+                        print("Entrada invalida! Tente novamente ")
                 if NumeroMenuQuatroUm == 1:
                     while True:
-                        NumeroMenuQuatro = int(input("Qual você deseja?\n"
-                                                     "1- Linha\n"
-                                                     "2- Cor\n"
-                                                     "3- Quantidade de Bancos\n"
-                                                     "4- Ano que foi fabricado\n"
-                                                     "5- Voltar\n "))
+                        while True:
+                            try:
+                                NumeroMenuQuatro = int(input("Qual você deseja?\n"
+                                                             "1- Linha\n"
+                                                             "2- Cor\n"
+                                                             "3- Quantidade de Bancos\n"
+                                                             "4- Ano que foi fabricado\n"
+                                                             "5- Voltar\n "))
+                                break
+                            except:
+                                print("Entrada invalida! Tente novamente ")
                         if NumeroMenuQuatro == 1:
-                            Condicao = True
-                            while Condicao == True:
+                            while True:
                                 OnibusM.LinhaM()
                                 LinhaNova = OnibusM.Linha
                                 if LinhaNova in DicOnibus:
@@ -177,9 +187,9 @@ def AlterarDadosOnibus():
                                     InformacoesAntigas = DicOnibus[Linha]
                                     del DicOnibus[Linha]
                                     DicOnibus[LinhaNova] = InformacoesAntigas
-                                    Condicao = False
                                     print("Linha Alterada!\n")
                                     Linha = LinhaNova
+                                    break
                         elif NumeroMenuQuatro == 2:
                             OnibusM.CorM()
                             print("Cor do Onibus alterada!\n")
@@ -206,18 +216,23 @@ def AlterarDadosOnibus():
                         if NParada == "S":
                             break
 
-                        NAcao = int(input("O que deseja fazer com essa parada?\n"
-                                          "1- Deletar\n"
-                                          "2- Mudar de lugar\n"
-                                          "3- Acrescentar outra no lugar\n"
-                                          "4- Volta\n "))
+                        while True:
+                            try:
+                                NumeroMenuQuatroDois = int(input("O que deseja fazer com essa parada?\n"
+                                                  "1- Deletar\n"
+                                                  "2- Mudar de lugar\n"
+                                                  "3- Acrescentar outra no lugar\n"
+                                                  "4- Volta\n "))
+                                break
+                            except:
+                                print("Entrada invalida! Tente novamente ")
 
-                        if NAcao == 1:
+                        if NumeroMenuQuatroDois == 1:
                             del ListaAux[NParada]
                             Tamanho =  len(ListaAux)
                             DicEmpresa[Linha][3] = Tamanho * Passagem
 
-                        elif NAcao == 2:
+                        elif NumeroMenuQuatroDois == 2:
                             ParadaSelecionada = ListaAux[NParada]
                             del ListaAux[NParada]
                             for i in range(len(ListaAux)):
@@ -230,9 +245,8 @@ def AlterarDadosOnibus():
                             for i in range(len(ListaAux)):
                                 print(f'{i + 1}- {ListaAux[i]}')
 
-                        elif NAcao == 3:
-                            Condicao = True
-                            while Condicao == True:
+                        elif NumeroMenuQuatroDois == 3:
+                            while True:
                                 NomeParada = input("Qual o nome da nova parada? (S para sair)\n ")
                                 if NomeParada == "S":
                                     break
@@ -243,11 +257,11 @@ def AlterarDadosOnibus():
                                     if NomeParada in ListaAux:
                                         print("Parada escolhida ja se encontra na rota desse ônibus! Selecione outra\n")
                                     else:
-                                        Condicao = False
                                         print(f"Nova parada adicionada na posição da antiga no ônibus de {Linha}\n")
                                         ListaAux[NParada] = NomeParada
+                                        break
 
-                        elif NAcao == 4:
+                        elif NumeroMenuQuatroDois == 4:
                             print("Voltando......\n\n")
                             break
 
@@ -288,8 +302,7 @@ def DeletarOnibus():
 "FUNÇÔES PARADAS"
 
 def CriandoParada():
-    Condicao = True
-    while Condicao == True:
+    while True:
         NovaParada = Parada()
         Nome = NovaParada.Nome
         if Nome in DicParadas:
@@ -297,8 +310,8 @@ def CriandoParada():
         else:
             DicParadas[Nome] = [NovaParada,[]]
             print(f"Parada {Nome} criada com sucesso!\n")
-            Condicao = False
             print("Voltando ao menu......\n\n")
+            break
 
 def AlterarDadosParada():
     while True:
@@ -313,16 +326,20 @@ def AlterarDadosParada():
 
         else:
             ParadaM = DicParadas[Nome][0]
-            NumeroMenuQuatro = int(input("Qual você deseja?\n"
-                                         "1- Nome\n"
-                                         "2- Rua\n"
-                                         "3- Bairro\n"
-                                         "4- Cidade\n"
-                                         "5- Estado\n"
-                                         "6- Sair\n"))
+            while True:
+                try:
+                    NumeroMenuQuatro = int(input("Qual você deseja?\n"
+                                                 "1- Nome\n"
+                                                 "2- Rua\n"
+                                                 "3- Bairro\n"
+                                                 "4- Cidade\n"
+                                                 "5- Estado\n"
+                                                 "6- Sair\n"))
+                    break
+                except:
+                    print("Entrada invalida! Tente novamente ")
             if NumeroMenuQuatro == 1:
-                Condicao = True
-                while Condicao == True:
+                while True:
                     ParadaM.NomeM()
                     NomeNovo = ParadaM.Nome
                     if NomeNovo in DicParadas:
@@ -342,8 +359,8 @@ def AlterarDadosParada():
                         InformacoesAntigas = DicParadas[Nome]
                         del DicParadas[Nome]
                         DicParadas[NomeNovo] = InformacoesAntigas
-                    Condicao = False
                     print("Voltando......\n\n")
+                    break
             elif NumeroMenuQuatro == 2:
                 ParadaM.RuaM()
                 print("Rua modificada com sucesso!\n")
@@ -381,8 +398,7 @@ def DeletarParada():
 "FUNÇÔES MOTORISTA"
 
 def CriandoMotorista():
-    Condicao = True
-    while Condicao == True:
+    while True:
         NovoMotorista = Motorista()
         Nome = NovoMotorista.Nome
         if Nome in DicMotoristas:
@@ -390,8 +406,8 @@ def CriandoMotorista():
         else:
             DicMotoristas[Nome] = [NovoMotorista, 'N']
             print(f"Motorista {Nome} criado com sucesso!\n")
-            Condicao = False
             print("Voltando....\n\n")
+            break
 
 def AlterarDadosMotorista():
     while True:
@@ -405,15 +421,19 @@ def AlterarDadosMotorista():
         else:
             MotoristaM = DicMotoristas[Nome][0]
             while True:
-                NumeroMenuQuatro = int(input("Qual você deseja?\n"
-                                             "1- Nome\n"
-                                             "2- Idade\n"
-                                             "3- Estado Civil\n"
-                                             "4- Número da Carteira\n"
-                                             "5- Voltar\n"))
+                while True:
+                    try:
+                        NumeroMenuQuatro = int(input("Qual você deseja?\n"
+                                                     "1- Nome\n"
+                                                     "2- Idade\n"
+                                                     "3- Estado Civil\n"
+                                                     "4- Número da Carteira\n"
+                                                     "5- Voltar\n"))
+                        break
+                    except:
+                        print("Entrada invalida! Tente novamente ")
                 if NumeroMenuQuatro == 1:
-                    Condicao = True
-                    while Condicao == True:
+                    while True:
                         MotoristaM.NomeM()
                         NomeNovo = MotoristaM.Nome
                         if NomeNovo in DicMotoristas:
@@ -428,7 +448,7 @@ def AlterarDadosMotorista():
                             del DicMotoristas[Nome]
                             DicMotoristas[NomeNovo] = InformacoesAntigas
                             print("Nome modificado com sucesso!\n")
-                            Condicao = False
+                            break
                 elif NumeroMenuQuatro == 2:
                     MotoristaM.IdadeM()
                     print("Idade modificada com sucesso!\n")
@@ -458,8 +478,7 @@ def DeletarMotorista():
 "FUNÇÔES FISCAIS"
 
 def CriandoFiscal():
-    Condicao = True
-    while Condicao == True:
+    while True:
         NovoFiscal = Fiscal()
         Nome = NovoFiscal.Nome
         if Nome in DicFiscais:
@@ -467,8 +486,8 @@ def CriandoFiscal():
         else:
             DicFiscais[Nome] = [NovoFiscal, 'N']
             print(f"Fiscal {Nome} criado com sucesso!\n")
-            Condicao = False
             print("Voltando....\n\n")
+            break
 
 def AlterarDadosFiscal():
     while True:
@@ -484,15 +503,19 @@ def AlterarDadosFiscal():
         else:
             FiscalM = DicFiscais[Nome][0]
             while True:
-                NumeroMenuQuatro = int(input("Qual você deseja?\n"
-                                             "1- Nome\n"
-                                             "2- Idade\n"
-                                             "3- Estado Civil\n"
-                                             "4- Número da Carteira\n"
-                                             "5- Voltar \n"))
+                while True:
+                    try:
+                        NumeroMenuQuatro = int(input("Qual você deseja?\n"
+                                                     "1- Nome\n"
+                                                     "2- Idade\n"
+                                                     "3- Estado Civil\n"
+                                                     "4- Número da Carteira\n"
+                                                     "5- Voltar \n"))
+                        break
+                    except:
+                        print("Entrada invalida! Tente novamente ")
                 if NumeroMenuQuatro == 1:
-                    Condicao = True
-                    while Condicao == True:
+                    while True:
                         FiscalM.NomeM()
                         NomeNovo = FiscalM.Nome
                         if NomeNovo in DicFiscais:
@@ -506,8 +529,8 @@ def AlterarDadosFiscal():
                             InformacoesAntigas = DicFiscais[Nome]
                             del DicFiscais[Nome]
                             DicFiscais[NomeNovo] = InformacoesAntigas
-                            Condicao = False
                             print("Nome modificado com sucesso!\n")
+                            break
                 elif NumeroMenuQuatro == 2:
                     FiscalM.IdadeM()
                     print("Idade modificada com sucesso!\n")
@@ -552,47 +575,61 @@ def main():
           ' "\__/"---------------"\__/"-+---+\n\n')
     time.sleep(0.5)
     print("Bem vindo ao sistema de gerenciamento de rede de transportes!")
-    Passagem = float(input("Defina um valor em real para o preço da passagem por parada\n"
-                           ""))
+
+    #DEFINIÇÂO DO PRESSO DA PASSAGEM
+    while True:
+        try:
+            Passagem = float(input("Defina um valor em real para o preço da passagem por parada\n"))
+            break
+        except:
+            print("Entrada invalida! Tente novamente.")
+
+
     while True:
         time.sleep(0.5)
 
-        NumeroMenuUm= int(input("\n_________________________________________________\n"
-                                "Selecione um número para a ação que deseja fazer \n"
-                                 "1- Criar\n"
-                                 "2- Mostrar\n"
-                                 "3- Assignar ou Adicionar\n"
-                                 "4- Alterar dados\n"
-                                 "5- Deletar\n"
-                                 "6- Sair\n"))
+        #Definindo um while para repetir caso tenha erro
+        while True:
+            NumeroMenuDois = 0
+            try:
+                NumeroMenuUm= int(input("\n_________________________________________________\n"
+                                    "Selecione um número para a ação que deseja fazer \n"
+                                     "1- Criar\n"
+                                     "2- Mostrar\n"
+                                     "3- Assignar ou Adicionar\n"
+                                     "4- Alterar dados\n"
+                                     "5- Deletar\n"
+                                     "6- Sair\n"))
+                break
+            except:
+                print("Entrada invalida! Tente novamente.")
+
         print("_________________________________________________\n")
-        if NumeroMenuUm not in [3,6]:
-            NumeroMenuDois = int(input("Deseja fazer essa ação com qual?\n"  # Definir um nome
-                                       "1- Ônibus\n"
-                                       "2- Ponto de Parada\n"
-                                       "3- Motorista\n"
-                                       "4- Fiscal\n"))
+        if NumeroMenuUm in [1,2,4,5]:
+            while True:
+                try:
+                    NumeroMenuDois = int(input("Deseja fazer essa ação com qual?\n" 
+                                               "1- Ônibus\n"
+                                               "2- Ponto de Parada\n"
+                                               "3- Motorista\n"
+                                               "4- Fiscal\n"))
+                    break
+                except:
+                    print("Entrada invalida! Tente novamente.")
         elif NumeroMenuUm== 3:
             NumeroMenuDois= 1
 
-        elif NumeroMenuUm== 6:
+        elif NumeroMenuUm== 6: #Saindo do programa
             print("Obrigado por usar! Até logo!")
             print("Saindo do programa.........")
             break
-
-        else:
-            pass
-
 
         if NumeroMenuDois== 1: #Onibus
             if NumeroMenuUm == 1: CriandoOnibus()
 
             elif NumeroMenuUm == 2:
                 for i in DicOnibus.keys():
-                    Rotas = DicEmpresa[i][0]
-                    NomeMoto = DicEmpresa[i][1]
-                    NomeFiscal = DicEmpresa[i][2]
-                    Preco = DicEmpresa[i][3]
+                    Rotas, NomeMoto, NomeFiscal, Preco = DicEmpresa[i][0], DicEmpresa[i][1], DicEmpresa[i][2], DicEmpresa[i][3]
                     print(DicOnibus[i])
                     if NomeMoto =="":
                         NomeMoto = 'não tem'
@@ -616,8 +653,7 @@ def main():
             elif NumeroMenuUm== 2:
                 for i in DicParadas.keys():
                     print(DicParadas[i][0])
-                    OnibusPassa = DicParadas[i][1]
-                    OnibusPassa = ", ".join(OnibusPassa)
+                    OnibusPassa = ", ".join(DicParadas[i][1])
                     if OnibusPassa == "":
                         OnibusPassa = "nenhum"
                     print(f'Os ônibus que passam por essa linha é {OnibusPassa}\n')
